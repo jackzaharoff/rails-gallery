@@ -39,4 +39,6 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+  # include Capybara DSL so it is available outside spec/features directory
+  config.include Capybara::DSL
 end
