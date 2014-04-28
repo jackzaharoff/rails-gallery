@@ -19,6 +19,8 @@ gem 'jquery-rails', '3.1.0'
 
 gem 'devise', '3.2.4'
 gem 'foreman', '0.63.0'
+gem 'bootstrap-sass', '3.1.1.0'
+gem 'bootstrap-will_paginate', '0.0.10'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '2.0.6'
