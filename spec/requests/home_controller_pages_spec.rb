@@ -15,7 +15,6 @@ describe 'home controller pages' do
     before { visit about_path }
     it { should have_title('About')}
     it { should have_selector('h2', text: 'About', count: 1)}
-
   end
   describe 'contact' do
     before { visit contact_path }
