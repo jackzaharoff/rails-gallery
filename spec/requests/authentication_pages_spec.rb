@@ -19,7 +19,7 @@ describe 'Authentication' do
     it { should have_field('Password confirmation')}
     include_examples 'devise shared links'
   end
-  describe "sign in" do
+  describe 'sign in' do
     before { visit new_user_session_path }
     it { should have_title('Sign in')}
     it { should have_selector('h2', text: 'Sign in')}
@@ -28,5 +28,13 @@ describe 'Authentication' do
     it { should have_field('Remember me', count: 1)}
     it { should have_link('Register', href: new_user_registration_path, count: 2)}
     include_examples 'devise shared links'
+
+    describe 'process' do
+      let(:confirmed_user) { FactoryGirl.create(:confirmed_user) }
+      before { sign_in confirmed_user }
+      it { should_not have_link('Sign in')}
+      it { should_not have_link('Register')}
+      it { should have_content("Hi, #{confirmed_user.username}")}
+    end
   end
 end
