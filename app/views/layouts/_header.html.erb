@@ -35,10 +35,9 @@
                 Hi, <%= current_user.username %>
                 <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Your files</a></li>
+                <li><%= link_to 'Profile', edit_user_registration_path %></li>
                 <li class="divider"></li>
-                <li><a href="#">Logout</a></li>
+                <li> <%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
               </ul>
             </li>
         <% else %>

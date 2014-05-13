@@ -35,6 +35,27 @@ describe 'Authentication' do
       it { should_not have_link('Sign in')}
       it { should_not have_link('Register')}
       it { should have_content("Hi, #{confirmed_user.username}")}
+      it { should have_link('Profile', href: edit_user_registration_path)}
+      it { should have_link('Logout', href: destroy_user_session_path)}
+      describe 'after sign in' do
+        describe 'do not display sign in form' do
+          before { visit new_user_session_path }
+          it { should have_content('You are already signed in.')}
+        end
+        describe 'do not display registration form' do
+          before { visit new_user_registration_path }
+          it { should have_content('You are already signed in.')}
+        end
+      end
     end
+  end
+
+  describe 'signing out' do
+    let(:confirmed_user) { FactoryGirl.create(:confirmed_user)}
+    before do
+      sign_in confirmed_user
+      click_link 'Logout'
+    end
+    it { should have_content('Signed out successfully.')}
   end
 end
