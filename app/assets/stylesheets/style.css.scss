@@ -18,3 +18,10 @@ body  {
 .alert-notice {
   @extend .alert-success;
 }
+
+// Forms
+
+.form-container {
+  width: 50%;
+  margin: 0px auto;
+}

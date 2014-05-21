@@ -49,7 +49,6 @@ describe 'Authentication' do
       it { should have_link('Profile', href: edit_user_registration_path)}
       it { should have_link('Logout', href: destroy_user_session_path)}
       it { should have_css('h4.alert-notice', text: 'Signed in successfully.', count: 1)}
-
       describe 'after sign in' do
         describe 'do not display sign in form' do
           before { visit new_user_session_path }

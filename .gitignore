@@ -30,6 +30,7 @@ pickle-email-*.html
 .project
 config/deploy/*
 config/secrets.yml
+config/database.yml
 lib/capistrano/tasks/*
 *.iml
 .env
