@@ -8,22 +8,24 @@ Rails.application.routes.draw do
   # disable registrations for production, see:
   # http://stackoverflow.com/questions/5370164/disabling-devise-registration-for-production-environment-only
   if Rails.env.production?
-    devise_for :users, controllers: {:registrations => "registrations"}, skip: [:sessions]
+    devise_for :users, controllers: {:registrations => 'registrations'}, skip: [:sessions]
   else
     devise_for :users, skip: [:sessions, :registrations]
+    as :user do
+      get 'users/cancel' => 'devise/registrations#cancel', as: :cancel_user_registration
+      get 'register' => 'devise/registrations#new', as: :new_user_registration
+      post 'register' => 'devise/registrations#create', as: :user_registration
+      get 'edit_profile' => 'devise/registrations#edit', as: :edit_user_registration
+      patch 'users' => 'devise/registrations#update'
+      put 'users' => 'devise/registrations#update'
+      delete 'users' => 'devise/registrations#destroy'
+    end
   end
 
   as :user do
     get 'sign_in' => 'devise/sessions#new', as: :new_user_session
     post 'sign_in' => 'devise/sessions#create', as: :user_session
     delete 'sign_out' => 'devise/sessions#destroy', as: :destroy_user_session
-    get 'users/cancel' => 'devise/registrations#cancel', as: :cancel_user_registration
-    get 'register' => 'devise/registrations#new', as: :new_user_registration
-    post 'register' => 'devise/registrations#create', as: :user_registration
-    get 'edit_profile' => 'devise/registrations#edit', as: :edit_user_registration
-    patch 'users' => 'devise/registrations#update'
-    put 'users' => 'devise/registrations#update'
-    delete 'users' => 'devise/registrations#destroy'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -35,4 +35,5 @@ lib/capistrano/tasks/*
 *.iml
 .env
 /public/images/*
+/public/assets
 /spec/photos/*
