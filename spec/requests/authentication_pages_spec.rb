@@ -26,12 +26,14 @@ describe 'Authentication' do
         fill_in 'Password', with: '123456789'
         fill_in 'Password confirmation', with: '123456789'
       end
-      #TODO make possible to return to previous URL after registration, not just redirect to root_path
       it { expect{ click_button 'Register' }.to change(User, :count).by(1) and redirect_to(root_path)}
     end
   end
   describe 'sign in' do
-    before { visit new_user_session_path }
+    before do
+      visit about_path
+      visit new_user_session_path
+    end
     it { should have_title('Sign in')}
     it { should have_selector('h2', text: 'Sign in')}
     it { should have_field('Email', count: 1)}
@@ -48,7 +50,8 @@ describe 'Authentication' do
       it { should have_content("Hi, #{confirmed_user.username}")}
       it { should have_link('Profile', href: edit_user_registration_path)}
       it { should have_link('Logout', href: destroy_user_session_path)}
-      it { should have_css('h4.alert-notice', text: 'Signed in successfully.', count: 1)}
+      it { should have_css('div.alert-notice', text: 'Signed in successfully.', count: 1)}
+      it { should have_title('About')}
       describe 'after sign in' do
         describe 'do not display sign in form' do
           before { visit new_user_session_path }
@@ -68,6 +71,6 @@ describe 'Authentication' do
       sign_in confirmed_user
       click_link 'Logout'
     end
-    it { should have_css('h4.alert-notice', text: 'Signed out successfully.', count: 1)}
+    it { should have_css('div.alert-notice', text: 'Signed out successfully.', count: 1)}
   end
 end

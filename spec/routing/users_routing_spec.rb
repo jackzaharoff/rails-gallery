@@ -16,11 +16,11 @@ describe UsersController do
     end
 
     it 'routes to devise/registrations#new' do
-      get('register').should route_to('devise/registrations#new')
+      get('users/sign_up').should route_to('devise/registrations#new')
     end
 
     it 'routes to devise/registrations#create' do
-      post('register').should route_to('devise/registrations#create')
+      post('users').should route_to('devise/registrations#create')
     end
 
     it 'routes to devise/registrations#cancel' do
@@ -28,7 +28,7 @@ describe UsersController do
     end
 
     it 'routes to devise/registrations#edit' do
-      get('edit_profile').should route_to('devise/registrations#edit')
+      get('users/edit').should route_to('devise/registrations#edit')
     end
 
     it 'routes to devise/registrations#update' do

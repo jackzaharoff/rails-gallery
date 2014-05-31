@@ -33,7 +33,7 @@ config/secrets.yml
 config/database.yml
 lib/capistrano/tasks/*
 *.iml
-.env
+.env*
 /public/images/*
 /public/assets
 /spec/photos/*
