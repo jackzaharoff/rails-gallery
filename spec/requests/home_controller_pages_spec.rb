@@ -12,7 +12,7 @@ describe 'home controller pages' do
     it { should have_link('Contact', href: contact_path)}
     it { should have_link('Sign in', href: new_user_session_path)}
     it { should have_link('Register', href: new_user_registration_path)}
-    # because user is not signed in
+    # because user is not signed in yet
     it { should_not have_link('Profile')}
     it { should_not have_link('Logout')}
   end

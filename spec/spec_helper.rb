@@ -41,4 +41,6 @@ RSpec.configure do |config|
   config.order = "random"
   # include Capybara DSL so it is available outside spec/features directory
   config.include Capybara::DSL
+  config.include Devise::TestHelpers, type: :controller
+
 end

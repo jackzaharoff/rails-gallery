@@ -18,6 +18,8 @@ gem 'coffee-rails', '4.0.1'
 gem 'jquery-rails', '3.1.0'
 
 gem 'devise', '3.2.4'
+gem 'cancan', '1.6.10'
+gem 'rolify', '3.4.0'
 gem 'foreman', '0.63.0'
 gem 'bootstrap-sass', '3.1.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'

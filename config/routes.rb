@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'dashboard/index'
+  end
+
   root 'home#index'
 
   match '/about', to: 'home#about', via: :get
   match '/contact', to: 'home#contact', via: :get
 
+  namespace :admin do
+    match '/', to: 'dashboard#index', via: :get
+  end
   # disable registrations for production, see:
   # http://stackoverflow.com/questions/5370164/disabling-devise-registration-for-production-environment-only
   if Rails.env.production?

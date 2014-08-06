@@ -5,8 +5,19 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 # saves location so after login the user
 # is back to the saved location
-  after_filter :store_location
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
+  before_filter do
+    resource = controller_name.singularize.to_sym
+    method = "#{resource}_params"
+    params[resource] &&= send(method) if respond_to?(method, true)
+    #TODO get_categories
+    #TODO check_for_page_param
+  end
+
+  after_filter :store_location
   protected
     def store_location
       # store last url - this is needed for post-login redirect to whatever the user last visited.
